@@ -14,11 +14,18 @@ import java.util.*;
 import java.io.IOException;
 
 public class Database {
-    public static void gantiScene(ActionEvent event, String fxmlFile, String title, String username) {
+    public static void gantiScene(ActionEvent event, String fxmlFile, String title, String username, String password) {
         Parent root = null;
 
-        if (username != null) {
-
+        if (username != null && password != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(Database.class.getResource(fxmlFile));
+                root = loader.load();
+                DashboardController dashboardController = loader.getController();
+                dashboardController.setUserInformation(username);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         } else {
             try {
                 root = FXMLLoader.load(Database.class.getResource(fxmlFile));
@@ -53,8 +60,95 @@ public class Database {
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.setString(3, password_validate);
+                psInsert.executeUpdate();
+
+                gantiScene(event, "dashboard.fxml", "Dompet Mahasiswa", username, password);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null){
+                try {
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (psInsert != null){
+                try {
+                    psInsert.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (psCheckUserExist != null){
+                try {
+                    psCheckUserExist.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
             }
         }
+    }
+    public static void loginUser(ActionEvent event, String username, String password){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projekakhirpbo", "root", "*Novand12004");
+            preparedStatement = connection.prepareStatement("SELECT password, password_validate FROM data_user WHERE username = ?");
+            resultSet = preparedStatement.executeQuery();
 
+            if (!resultSet.isBeforeFirst()){
+                System.out.println("User tidak ditemukan dalam database!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Akun tidak valid!");
+                alert.show();
+            }else {
+                while (resultSet.next()){
+                    String temukanLagiPassword = resultSet.getString("password");
+                    String temukanLagiPassValidasi = resultSet.getString("validate_password");
+                    if (temukanLagiPassword.equals(password)){
+                        gantiScene(event, "dashboard.fxml", "Dompet Mahasiswa", username, temukanLagiPassValidasi);
+                    }else {
+                        System.out.println("Password tidak sesuai");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Akun tidak valid!");
+                        alert.show();
+                    }
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null){
+                try {
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
