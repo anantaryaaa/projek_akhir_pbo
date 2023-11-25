@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -30,7 +29,14 @@ public class LoginController implements Initializable {
         Btn_masuk.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Database.loginUser(event, Tf_username.getText(), Pf_password.getText());
+            }
+        });
 
+        Btn_daftar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Database.gantiScene(event, "signup.fxml", "Dompet Mahasiswa", null, null);
             }
         });
     }
