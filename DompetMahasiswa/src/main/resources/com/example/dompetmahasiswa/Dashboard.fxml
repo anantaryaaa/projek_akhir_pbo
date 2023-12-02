@@ -1,110 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dompetmahasiswa.DashboardController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dompetmahasiswa.DashboardController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="199.0" style="-fx-background-color: #190482;">
+      <AnchorPane fx:id="Sc_pane" prefHeight="400.0" prefWidth="143.0" style="-fx-background-color: #190482;">
          <children>
-            <Group layoutX="52.0" layoutY="48.0">
+            <Group layoutX="27.0" layoutY="46.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="50.0" layoutX="9.0" layoutY="-5.0" stroke="#7752fe" strokeType="INSIDE" width="70.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="30.0" layoutX="57.0" layoutY="6.0" stroke="#8e8ffa" strokeType="INSIDE" width="42.0" />
                   <Circle fill="WHITE" layoutX="78.0" layoutY="21.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
                </children>
             </Group>
-            <Label layoutX="14.0" layoutY="106.0" text="DOMPET MAHASISWA" textFill="WHITE">
+            <Label layoutX="5.0" layoutY="106.0" text="DOMPET MAHASISWA" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="Label_username" layoutX="91.0" layoutY="127.0" text="\@" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #ffff;" text="Dashboard">
+            <Label fx:id="Label_username" layoutX="65.0" layoutY="120.0" text="\@" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard" layoutX="26.0" layoutY="160.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: #ffff;" text="Dashboard">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="Btn_keluar" layoutX="60.0" layoutY="349.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #ff0000;" text="Keluar" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard111" layoutX="13.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Budget Pengeluaran" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard1111" layoutX="13.0" layoutY="280.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Pelacak Budget Pengeluaran" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard1112" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Uang Pengeluaran" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard11121" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Uang Pemasukkan " textFill="WHITE" />
+            <Button fx:id="Btn_keluar" layoutX="26.0" layoutY="349.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: #ff0000;" text="Keluar" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard111" layoutX="26.0" layoutY="250.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Budgeting" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard1111" layoutX="26.0" layoutY="280.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pelacak" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard1112" layoutX="26.0" layoutY="220.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pengeluaran" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard11121" layoutX="26.0" layoutY="190.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pemasukkan " textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane onDragDetected="#Btn_pemasukkan" prefHeight="400.0" prefWidth="457.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#190482" height="50.0" layoutX="11.0" layoutY="21.0" stroke="#190482" strokeType="INSIDE" width="380.0" />
-            <Line endX="221.0" layoutX="170.0" layoutY="46.0" startX="-159.0" stroke="WHITE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="15.0" layoutY="116.0" stroke="DODGERBLUE" strokeType="INSIDE" width="150.0" />
-            <Label layoutX="33.0" layoutY="92.0" text="Uang Pemasukkan">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#190482" height="50.0" layoutX="41.0" layoutY="21.0" stroke="#190482" strokeType="INSIDE" width="380.0" />
+            <Line endX="221.0" layoutX="200.0" layoutY="46.0" startX="-159.0" stroke="WHITE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="45.0" layoutY="116.0" stroke="DODGERBLUE" strokeType="INSIDE" width="150.0" />
+            <Label layoutX="63.0" layoutY="92.0" text="Uang Pemasukkan">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0606f8" height="75.0" layoutX="16.0" layoutY="268.0" stroke="#0606f8" strokeType="INSIDE" width="150.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cb00ff" height="75.0" layoutX="246.0" layoutY="268.0" stroke="#cb00ff" strokeType="INSIDE" width="150.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="52.0" layoutY="125.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="93.0" layoutY="129.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
-            <Circle fill="WHITE" layoutX="112.0" layoutY="141.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
-            <Label layoutX="16.0" layoutY="24.0" text="Saldo Keuangan" textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0606f8" height="75.0" layoutX="41.0" layoutY="268.0" stroke="#0606f8" strokeType="INSIDE" width="150.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cb00ff" height="75.0" layoutX="276.0" layoutY="268.0" stroke="#cb00ff" strokeType="INSIDE" width="150.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="82.0" layoutY="125.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="123.0" layoutY="129.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
+            <Circle fill="WHITE" layoutX="142.0" layoutY="141.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="46.0" layoutY="24.0" text="Saldo Keuangan" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="116.0" layoutY="47.0" text="Rp " textFill="WHITE">
+            <Label layoutX="146.0" layoutY="47.0" text="Rp " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="169.0" text="Rp " textFill="WHITE">
+            <Label layoutX="52.0" layoutY="169.0" text="Rp " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Button layoutX="30.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #1e90ff;" text="Lihat Semua" textFill="WHITE" />
-            <Label layoutX="271.0" layoutY="92.0" text="Uang Pengeluaran">
+            <Button layoutX="60.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #1e90ff;" text="Lihat Semua" textFill="WHITE" />
+            <Label layoutX="301.0" layoutY="92.0" text="Uang Pengeluaran">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="75.0" layoutX="245.0" layoutY="116.0" stroke="RED" strokeType="INSIDE" width="150.0" />
-            <Label layoutX="253.0" layoutY="168.0" text="Rp " textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="75.0" layoutX="275.0" layoutY="116.0" stroke="RED" strokeType="INSIDE" width="150.0" />
+            <Label layoutX="283.0" layoutY="168.0" text="Rp " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Button layoutX="265.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #ff0000;" text="Lihat Semua" textFill="WHITE" />
-            <Label layoutX="24.0" layoutY="320.0" text="Rp " textFill="WHITE">
+            <Button layoutX="295.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #ff0000;" text="Lihat Semua" textFill="WHITE" />
+            <Label layoutX="49.0" layoutY="320.0" text="Rp " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Button layoutX="32.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0606f8;" text="Lihat Semua" textFill="WHITE" />
-            <Button layoutX="265.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #cb00ff;" text="Lihat Semua" textFill="WHITE" />
-            <Label layoutX="254.0" layoutY="320.0" text="Rp " textFill="WHITE">
+            <Button layoutX="57.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0606f8;" text="Lihat Semua" textFill="WHITE" />
+            <Button layoutX="295.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #cb00ff;" text="Lihat Semua" textFill="WHITE" />
+            <Label layoutX="284.0" layoutY="320.0" text="Rp " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="286.0" layoutY="125.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="327.0" layoutY="129.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
-            <Circle fill="WHITE" layoutX="346.0" layoutY="141.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="52.0" layoutY="276.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="93.0" layoutY="280.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
-            <Circle fill="WHITE" layoutX="112.0" layoutY="292.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="286.0" layoutY="275.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="327.0" layoutY="279.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
-            <Circle fill="WHITE" layoutX="346.0" layoutY="291.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
-            <Label layoutX="33.0" layoutY="245.0" text="Budget Pengeluaran">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="316.0" layoutY="125.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="357.0" layoutY="129.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
+            <Circle fill="WHITE" layoutX="376.0" layoutY="141.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="77.0" layoutY="276.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="118.0" layoutY="280.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
+            <Circle fill="WHITE" layoutX="137.0" layoutY="292.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="40.0" layoutX="316.0" layoutY="275.0" stroke="#7752fe" strokeType="INSIDE" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="25.0" layoutX="357.0" layoutY="279.0" stroke="#8e8ffa" strokeType="INSIDE" width="40.0" />
+            <Circle fill="WHITE" layoutX="376.0" layoutY="291.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="58.0" layoutY="245.0" text="Budget Pengeluaran">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="234.0" layoutY="245.0" text="Pelacak Budget Pengeluaran">
+            <Label layoutX="264.0" layoutY="245.0" text="Pelacak Budget Pengeluaran">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
