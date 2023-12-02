@@ -13,48 +13,49 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dompetmahasiswa.BudgetingController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="199.0" style="-fx-background-color: #190482;">
+      <AnchorPane fx:id="Sc_pane" prefHeight="400.0" prefWidth="143.0" style="-fx-background-color: #190482;">
          <children>
-            <Group layoutX="52.0" layoutY="48.0">
+            <Group layoutX="27.0" layoutY="46.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7752fe" height="50.0" layoutX="9.0" layoutY="-5.0" stroke="#7752fe" strokeType="INSIDE" width="70.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e8ffa" height="30.0" layoutX="57.0" layoutY="6.0" stroke="#8e8ffa" strokeType="INSIDE" width="42.0" />
                   <Circle fill="WHITE" layoutX="78.0" layoutY="21.0" radius="5.0" stroke="WHITE" strokeType="INSIDE" />
                </children>
             </Group>
-            <Label layoutX="14.0" layoutY="106.0" text="DOMPET MAHASISWA" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="Label_username" layoutX="91.0" layoutY="127.0" text="\@" textFill="WHITE" />
-            <Button fx:id="Btn_keluar" layoutX="60.0" layoutY="349.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #ff0000;" text="Keluar" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard111" layoutX="13.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #ffff;" text="Budget Pengeluaran">
+            <Label layoutX="5.0" layoutY="106.0" text="DOMPET MAHASISWA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="Btn_dashboard1111" layoutX="13.0" layoutY="280.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Pelacak Budget Pengeluaran" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard1112" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Uang Pengeluaran" textFill="WHITE" />
-            <Button fx:id="Btn_dashboard11121" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Uang Pemasukkan " textFill="WHITE" />
-            <Button fx:id="Btn_dashboard111211" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparant;" text="Dashboard" textFill="WHITE" />
+               </font>
+            </Label>
+            <Label fx:id="Label_username" layoutX="65.0" layoutY="120.0" text="\@" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard" layoutX="26.0" layoutY="160.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: #ffff;" text="Dashboard">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="Btn_keluar" layoutX="26.0" layoutY="349.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: #ff0000;" text="Keluar" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard111" layoutX="26.0" layoutY="250.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Budgeting" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard1111" layoutX="26.0" layoutY="280.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pelacak" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard1112" layoutX="26.0" layoutY="220.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pengeluaran" textFill="WHITE" />
+            <Button fx:id="Btn_dashboard11121" layoutX="26.0" layoutY="190.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" style="-fx-background-color: transparant;" text="Pemasukkan " textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="401.0">
+      <AnchorPane prefHeight="400.0" prefWidth="457.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#190482" height="301.0" layoutX="10.0" layoutY="84.0" stroke="#190482" strokeType="INSIDE" width="383.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#190482" height="301.0" layoutX="8.0" layoutY="85.0" stroke="#190482" strokeType="INSIDE" width="441.0" />
             <Label layoutX="119.0" layoutY="11.0" text="Budget Pengeluaran">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TableView layoutX="15.0" layoutY="91.0" prefHeight="285.0" prefWidth="372.0">
+            <TableView layoutX="13.0" layoutY="92.0" prefHeight="285.0" prefWidth="431.0">
               <columns>
                   <TableColumn prefWidth="52.0" text="ID" />
-                  <TableColumn prefWidth="198.0" text="Keterangan" />
-                  <TableColumn minWidth="0.0" prefWidth="121.0" text="Nominal" />
+                  <TableColumn prefWidth="250.0" text="Keterangan" />
+                  <TableColumn minWidth="0.0" prefWidth="126.7" text="Nominal" />
               </columns>
             </TableView>
-            <Button layoutX="330.0" layoutY="53.0" mnemonicParsing="false" text="Edit data" />
+            <Button layoutX="383.0" layoutY="53.0" mnemonicParsing="false" text="Edit data" />
             <Label layoutX="10.0" layoutY="57.0" text="Total" />
             <Label layoutX="60.0" layoutY="57.0" text="Rp">
                <font>
