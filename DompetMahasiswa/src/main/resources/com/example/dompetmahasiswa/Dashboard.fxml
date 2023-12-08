@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dompetmahasiswa.DashboardController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#190482" height="59.0" stroke="#190482" strokeType="INSIDE" width="600.0" />
+      <Label layoutX="189.0" layoutY="12.0" text="Dompet Mahasiswa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="Btn_keluar" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Keluar" textFill="WHITE" />
+      <VBox layoutX="14.0" layoutY="69.0" prefHeight="59.0" prefWidth="399.0" spacing="5.0">
+         <children>
+            <Label text="Saldo Keuangan">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" startX="-100.0" />
+            <HBox prefHeight="35.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Label text="Rp">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Lbl_uang" text="------">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox layoutX="10.0" layoutY="133.0" prefHeight="243.0" prefWidth="580.0" spacing="10.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="206.0" spacing="5.0" style="-fx-background-color: #4acd17;">
+               <children>
+                  <Label text="Pemasukkan" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="35.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Rp" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Lbl_pemasukkan" text="------" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="Tv_pemasukkan" prefHeight="154.0" prefWidth="176.0">
+                     <columns>
+                        <TableColumn fx:id="Tc_pemasukkan" prefWidth="185.0" text="Keterangan" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="Btn_pemasukkan" mnemonicParsing="false" text="Lihat Semua" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="206.0" spacing="5.0" style="-fx-background-color: #ff0000;">
+               <children>
+                  <Label text="Pengeluaran" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="35.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Rp" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Lbl_pengeluaran" text="------" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="Tv_pengeluaran" prefHeight="155.0" prefWidth="177.0">
+                    <columns>
+                      <TableColumn fx:id="Tc_pengeluaran" prefWidth="185.0" text="Keterangan" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="Btn_pengeluaran" mnemonicParsing="false" text="Lihat Semua" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="10.0" prefHeight="239.0" prefWidth="206.0" spacing="5.0" style="-fx-background-color: #190482;">
+               <children>
+                  <Label text="Kategori Pengeluaran" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="35.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Rp" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Lbl_kategori" text="------" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="Tv_kategori" prefHeight="155.0" prefWidth="177.0">
+                     <columns>
+                        <TableColumn fx:id="Tc_kategori" prefWidth="185.0" text="Keterangan" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="Btn_kategori" mnemonicParsing="false" text="Lihat Semua" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
