@@ -1,220 +1,157 @@
-package com.example.dompetmahasiswa;
+package com.example.menupengeluaran;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class menuPengeluaranController implements Initializable {
+public class PengeluaranController implements Initializable {
+    @FXML
+    private Button Btn_edit;
 
     @FXML
-    private Label akun;
+    private Button Btn_hapus;
 
     @FXML
-    private Button btnHapus;
+    private Button Btn_kembali;
 
     @FXML
-    private Button btnTambah;
+    private Button Btn_tambah;
 
     @FXML
-    private Button btnUbah;
+    private Label Lbl_uang;
 
     @FXML
-    private ComboBox<String> cbKategori;
+    private TableColumn<Pengeluaran, String > Tc_kategori;
 
     @FXML
-    private TableColumn<Pengeluaran, String> colKategori;
+    private TableColumn<Pengeluaran, String> Tc_keterangan;
 
     @FXML
-    private TableColumn<Pengeluaran, String> colKeterangan;
+    private TableColumn<Pengeluaran, String> Tc_nominal;
 
     @FXML
-    private TableColumn<Pengeluaran, String> colNominal;
+    private TableColumn<Pengeluaran, LocalDate> Tc_tanggal;
 
     @FXML
-    private TableColumn<Pengeluaran, LocalDate> colTanggal;
-
-    @FXML
-    private Button dashboard;
-
-    @FXML
-    private DatePicker dpTanggal;
-
-    @FXML
-    private Button kategoriPengeluaran;
-
-    @FXML
-    private Button keluar;
-
-    @FXML
-    private Button pemasukkan;
-
-    @FXML
-    private Button pengeluaran;
-
-    @FXML
-    private Label saldoKeuangan;
-
-    @FXML
-    private TextField tfKeterangan;
-
-    @FXML
-    private TextField tfNominal;
-
-    @FXML
-    private TableView<Pengeluaran> tvPengeluaran;
+    private TableView<Pengeluaran> Tv_pengeluaran;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tampilkanPengeluaran();
-        Daftar_kategori();
 
-        btnTambah.setOnAction(new EventHandler<ActionEvent>() {
+        Btn_hapus.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (!tfKeterangan.getText().trim().isEmpty() || !tfNominal.getText().trim().isEmpty() || dpTanggal.getValue() != null || cbKategori.getValue() != null) {
-                    LocalDate tanggalTransaksi = dpTanggal.getValue();
-                    String keterangan = tfKeterangan.getText();
-                    String nominal = String.valueOf(Double.parseDouble(tfNominal.getText()));
-                    String kategori = cbKategori.getValue();
+//                inisialisasinya disini, metodenya dibawah
+                Pengeluaran pengeluaran = Tv_pengeluaran.getSelectionModel().getSelectedItem();
 
-                    Tambah_pengeluaran(actionEvent, tanggalTransaksi, keterangan, kategori, nominal);
-                } else {
-                    System.out.println("Isi semua informasi yang dibutuhkan!");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Isi form untuk tambah data!");
-                    alert.show();
+                if (pengeluaran == null) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Peringatan");
+                    alert.setHeaderText("Tidak ada data yang dipilih");
+                    alert.setContentText("Harap pilih data yang ingin dihapus");
+                    alert.showAndWait();
+                    return;
+                }
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Konfirmasi");
+                alert.setHeaderText("Hapus Pengeluaran?");
+                alert.setContentText("Apakah Anda yakin ingin menghapus pengeluaran ini?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.get() == ButtonType.OK) {
+                    // Hapus data dari database
+                    try {
+                        Connection connection = DBConnector.getDatabaselink();
+                        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM pengeluaran WHERE id = ?");
+                        preparedStatement.setInt(1, pengeluaran.getId());
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Refresh data di TableView
+                    tampilkanPengeluaran();
                 }
             }
         });
 
-        kategoriPengeluaran.setOnAction(new EventHandler<ActionEvent>() {
+        Btn_edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+//                inisialisasinya disini, metodenya dibawah
+                Pengeluaran pengeluaran = Tv_pengeluaran.getSelectionModel().getSelectedItem();
+
+                if (pengeluaran == null) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Peringatan");
+                    alert.setHeaderText("Tidak ada data yang dipilih");
+                    alert.setContentText("Harap pilih data yang ingin diedit");
+                    alert.showAndWait();
+                    return;
+                }
+
+                // Buka form edit
                 try {
-                    Pergantian_scene.gantiScene(actionEvent, "Kategori.fxml", "Dompet Mahasiswa");
-                } catch (Exception e) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FormPengeluaran.fxml"));
+                    Parent parent = loader.load();
+
+                    FormPengeluaranController controller = loader.getController();
+                    controller.setPengeluaran(pengeluaran);
+
+                    // Refresh data di TableView
+                    tampilkanPengeluaran();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Btn_kembali.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Pergantian_scene.gantiScene(event, "Dashboard.fxml", "Dompet Mahasiswa");
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
 
-        dashboard.setOnAction(new EventHandler<ActionEvent>() {
+        Btn_tambah.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent event) {
                 try {
-                    Pergantian_scene.gantiScene(actionEvent, "Dashboard.fxml", "Dompet Mahasiswa");
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        keluar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-            }
-        });
-
-        pemasukkan.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    Pergantian_scene.gantiScene(actionEvent, "Pemasukkan.fxml", "Dompet Mahasiswa");
-                } catch (Exception e) {
+                    Pergantian_scene.gantiScene(event, "FormPengeluaran.fxml", "Dompet Mahasiswa");
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
     }
 
-    public void Daftar_kategori(){
-        DBConnector koneksi = new DBConnector();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        try{
-            connection = koneksi.getDatabaselink();
-            preparedStatement = connection.prepareStatement("SELECT kategori FROM kategori_uang");
-            resultSet = preparedStatement.executeQuery();
-
-            ObservableList<String> kategori = FXCollections.observableArrayList();
-            while (resultSet.next()){
-                String Nama_kategori = resultSet.getString("kategori");
-                kategori.add(Nama_kategori);
-            }
-            cbKategori.setItems(kategori);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            if (connection != null){
-                try {
-                    connection.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            }if (preparedStatement != null){
-                try {
-                    preparedStatement.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            }if (resultSet != null){
-                try {
-                    resultSet.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void Tambah_pengeluaran(ActionEvent event, LocalDate tanggal, String keterangan, String kategori, String nominal){
-        DBConnector koneksi = new DBConnector();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-            connection = koneksi.getDatabaselink();
-            preparedStatement = connection.prepareStatement("INSERT INTO pengeluaran(tanggal, keterangan, kategori, nominal) VALUES (?, ?, ?, ?)");
-            preparedStatement.setDate(1, Date.valueOf(tanggal));
-            preparedStatement.setString(2,keterangan);
-            preparedStatement.setString(3,kategori);
-            preparedStatement.setString(4,nominal);
-            preparedStatement.executeUpdate();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Sukses, pengeluaran berhasil ditambahkan ke database.");
-            // Menampilkan alert dan menunggu sampai ditutup
-            alert.showAndWait();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            if (connection != null){
-                try {
-                    connection.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            }if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    private void loadDataPengeluaran() {
     }
 
     public ObservableList<Pengeluaran> ambilDaftarPengeluaran(){
@@ -225,7 +162,7 @@ public class menuPengeluaranController implements Initializable {
         ResultSet resultSet = null;
 
         try{
-            connection = koneksi.getDatabaselink();
+            connection = DBConnector.getDatabaselink();
             preparedStatement = connection.prepareStatement("SELECT * FROM pengeluaran");
             resultSet = preparedStatement.executeQuery();
             Pengeluaran pengeluaran;
@@ -242,11 +179,11 @@ public class menuPengeluaranController implements Initializable {
     public void tampilkanPengeluaran(){
         ObservableList<Pengeluaran> list = ambilDaftarPengeluaran();
 
-        colTanggal.setCellValueFactory(new PropertyValueFactory<Pengeluaran, LocalDate>("tanggal"));
-        colKeterangan.setCellValueFactory(new PropertyValueFactory<Pengeluaran, String>("keterangan"));
-        colKategori.setCellValueFactory(new PropertyValueFactory<Pengeluaran, String >("kategori"));
-        colNominal.setCellValueFactory(new PropertyValueFactory<Pengeluaran, String>("nominal"));
+        Tc_tanggal.setCellValueFactory(new PropertyValueFactory<Pengeluaran, LocalDate>("tanggal"));
+        Tc_keterangan.setCellValueFactory(new PropertyValueFactory<Pengeluaran, String>("keterangan"));
+        Tc_kategori.setCellValueFactory(new PropertyValueFactory<Pengeluaran,String>("kategori"));
+        Tc_nominal.setCellValueFactory(new PropertyValueFactory<Pengeluaran, String>("nominal"));
 
-        tvPengeluaran.setItems(list);
+        Tv_pengeluaran.setItems(list);
     }
 }
