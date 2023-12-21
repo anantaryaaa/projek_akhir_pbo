@@ -128,9 +128,9 @@
                            </children>
                         </HBox>
                         <TableView fx:id="tabelPemasukkan" prefHeight="276.0" prefWidth="228.0">
-                          <columns>
-                            <TableColumn fx:id="kolomPemasukkan" prefWidth="250.0" text="Keterangan" />
-                          </columns>
+                           <columns>
+                              <TableColumn fx:id="kolomPemasukkan" prefWidth="250.0" text="Keterangan" />
+                           </columns>
                         </TableView>
                      </children>
                      <padding>
