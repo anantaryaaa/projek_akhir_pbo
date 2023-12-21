@@ -65,8 +65,9 @@ public class menuDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        hitungTotalNominaPemasukkan();
-        hitungTotalNominaPengeluara();
+        hitungTotalNominalPemasukkan();
+        hitungTotalNominalPengeluaran();
+        hitungTotalNominalKategori();
         hitungSelisihNominal();
         tampilkanPemasukkan();
         tampilkanPengeluaran();
@@ -246,7 +247,7 @@ public class menuDashboardController implements Initializable {
         return totalNominal;
     }
 
-    public void hitungTotalNominal() {
+    public void hitungTotalNominalKategori() {
         double totalNominal = ambilTotalNominalKategori();
 
         String formattedNominal = formatNominal(totalNominal);
@@ -275,7 +276,7 @@ public class menuDashboardController implements Initializable {
         return totalNominal;
     }
 
-    public void hitungTotalNominaPengeluara() {
+    public void hitungTotalNominalPengeluaran() {
         double totalNominal = ambilTotalNominalPengeluaran();
 
         String formattedNominal = formatNominal(totalNominal);
@@ -304,7 +305,7 @@ public class menuDashboardController implements Initializable {
         return totalNominal;
     }
 
-    public void hitungTotalNominaPemasukkan() {
+    public void hitungTotalNominalPemasukkan() {
         double totalNominal = ambilTotalNominalPemasukkan();
 
         String formattedNominal = formatNominal(totalNominal);
