@@ -114,11 +114,9 @@
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="331.0" text="contoh : 10000">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
@@ -127,7 +125,10 @@
                   <VBox alignment="CENTER" layoutX="298.0" layoutY="10.0" prefHeight="199.0" prefWidth="271.0" spacing="20.0">
                      <children>
                         <TextField fx:id="tfKategori" layoutX="10.0" layoutY="97.0" />
-                        <TextField fx:id="tfNominal" layoutX="10.0" layoutY="97.0" />
+                        <TextField fx:id="tfNominal" layoutX="10.0" layoutY="97.0" promptText="contoh : 100000">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin></TextField>
                      </children>
                      <padding>
                         <Insets bottom="20.0" />
@@ -155,11 +156,11 @@
                </children>
             </HBox>
             <TableView fx:id="tvKategori" prefHeight="364.0" prefWidth="776.0">
-              <columns>
+               <columns>
                   <TableColumn fx:id="colId" minWidth="0.0" prefWidth="50.333343505859375" text="ID" />
-                <TableColumn fx:id="colKategori" prefWidth="591.6666564941406" text="Kategori" />
+                  <TableColumn fx:id="colKategori" prefWidth="591.6666564941406" text="Kategori" />
                   <TableColumn fx:id="colNominal" minWidth="0.0" prefWidth="133.0" text="Nominal" />
-              </columns>
+               </columns>
             </TableView>
          </children></VBox>
    </children>
