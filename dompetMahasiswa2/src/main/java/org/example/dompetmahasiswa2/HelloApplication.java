@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // Membuat FXMLLoader untuk memuat tata letak UI dari file "Dashboard.fxml"
+        // Membuat FXMLLoader untuk memuat tata letak UI dari file "Login.fxml"
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
 
         // Membuat Scene dengan tata letak UI yang dimuat dan mengatur dimensi stage
